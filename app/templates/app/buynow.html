@@ -1,0 +1,10 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock title %}
+{% block main-content %}
+<form method="post">
+  {% csrf_token %}
+  <!-- Add your product details here -->
+  <input type="submit" value="Buy Now">
+</form>
+{% endblock main-content %}
