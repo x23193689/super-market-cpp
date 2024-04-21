@@ -150,12 +150,19 @@ def remove_cart(request):
 	else:
 		return HttpResponse("")
 
-def buy_now(request, product_id):
-    product = Product.objects.get(id=product_id)
-    if request.method == 'POST':
-        request.session['product_id'] = product.id
-        return redirect('checkout')
-    return render(request, 'app/buynow.html', {'product': product})
+
+def buy_now(request, product_id=None):
+    if product_id:
+        # Existing code for handling a specific product_id
+        product = get_object_or_404(Product, id=product_id)
+        if request.method == 'POST':
+            request.session['product_id'] = product.id
+            return redirect('checkout')
+        return render(request, 'app/buy-now.html', {'product': product})
+    else:
+        # New code for handling cases where no product_id is provided
+        products = Product.objects.all()
+        return render(request, 'app/product_list.html', {'products': products})
 
 
 def address(request):
