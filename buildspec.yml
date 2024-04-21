@@ -44,7 +44,7 @@ phases:
     commands:
     #sonar analyiss this report will be send to the sonarcloud
 
-    - sonar-scanner   -Dsonar.organization=x23193689   -Dsonar.projectKey=x23193689_super-market-cpp   -Dsonar.sources=.   -Dsonar.host.url=https://sonarcloud.io -Dsonar.python.pylint.reportPaths=pylint_report.txt
+    # - sonar-scanner   -Dsonar.organization=x23193689   -Dsonar.projectKey=x23193689_super-market-cpp   -Dsonar.sources=.   -Dsonar.host.url=https://sonarcloud.io -Dsonar.python.pylint.reportPaths=pylint_report.txt
 
 artifacts:
   files:
