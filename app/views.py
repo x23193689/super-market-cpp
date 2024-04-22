@@ -151,18 +151,16 @@ def remove_cart(request):
 		return HttpResponse("")
 
 
+@login_required
 def buy_now(request, product_id=None):
     if product_id:
-        # Existing code for handling a specific product_id
-        product = get_object_or_404(Product, id=product_id)
-        if request.method == 'POST':
-            request.session['product_id'] = product.id
-            return redirect('checkout')
-        return render(request, 'app/buy-now.html', {'product': product})
-    else:
-        # New code for handling cases where no product_id is provided
-        products = Product.objects.all()
-        return render(request, 'app/product_list.html', {'products': products})
+        user = request.user
+        item_already_in_cart = Cart.objects.filter(Q(product=product_id) & Q(user=user)).exists()
+        if not item_already_in_cart:
+            product = get_object_or_404(Product, id=product_id)
+            Cart(user=user, product=product).save()
+            messages.success(request, 'Product Added to Cart Successfully !!')
+        return redirect('checkout')
 
 
 def address(request):
