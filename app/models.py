@@ -42,11 +42,18 @@ class Customer(models.Model):
     def __str__(self):
         return str(self.id)
 
+# CATEGORY_CHOICES = (
+#     ('M', 'Mobile'),
+#     ('L', 'Laptop'),
+#     ('PR', 'Top Wear'),
+#     ('MF', 'Bottom Wear'),
+# )
+
 CATEGORY_CHOICES = (
     ('M', 'Mobile'),
     ('L', 'Laptop'),
-    ('TW', 'Top Wear'),
-    ('BW', 'Bottom Wear'),
+    ('PR', 'Produce'),
+    ('MF', 'Meat fish'),
 )
 class Product(models.Model):
     title = models.CharField(max_length=100)

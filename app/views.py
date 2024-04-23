@@ -36,8 +36,8 @@ def search(request):
 
 class ProductView(View):
     def get(self, request):
-        topwears = Product.objects.filter(category='TW')
-        bottomwears = Product.objects.filter(category='BW')
+        topwears = Product.objects.filter(category='PR')
+        bottomwears = Product.objects.filter(category='MF')
         mobiles = Product.objects.filter(category='M')
         return render(request, 'app/home.html', {'topwears': topwears, 'bottomwears': bottomwears, 'mobiles':mobiles})
 
@@ -181,16 +181,16 @@ def mobile(request, data=None):
 
 def topwear(request, data=None):
     if data == None:
-        topwears = Product.objects.filter(category='TW')
+        topwears = Product.objects.filter(category='PR')
     elif data == 'HRX' or data == 'Polo' or data == "Park":
-        topwears = Product.objects.filter(category='TW').filter(brand=data)
+        topwears = Product.objects.filter(category='PR').filter(brand=data)
     return render(request, 'app/topwear.html', {'topwears': topwears})
 
 def bottomwear(request, data=None):
     if data == None:
-        bottomwears = Product.objects.filter(category='BW')
+        bottomwears = Product.objects.filter(category='MF')
     elif data == 'Beyoung' or data == "Lee":
-        bottomwears = Product.objects.filter(category='BW').filter(brand=data)
+        bottomwears = Product.objects.filter(category='MF').filter(brand=data)
     return render(request, 'app/bottomwear.html', {'bottomwears': bottomwears})
 
 
